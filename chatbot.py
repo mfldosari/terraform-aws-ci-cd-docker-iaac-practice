@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 
 # Set page title
-st.title("Chatbot basic v6")
+st.title("Chatbot basic v10")
 
 # Load environment variables
 load_dotenv()
