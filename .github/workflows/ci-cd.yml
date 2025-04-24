@@ -7,7 +7,7 @@ on:
 
 jobs:
   test:
-    name: Streamlit Docker Smoke Test
+    name: Streamlit Docker Test
     runs-on: ubuntu-latest
 
     steps:
@@ -17,7 +17,7 @@ jobs:
       - name: Build Docker image
         run: docker build -t chatbot-streamlit-test .
 
-      - name: 🚀 Run container and test Streamlit with curl
+      - name: Run container and test Streamlit with curl
         run: |
           docker run -d -p 8501:8501 --name test-container chatbot-streamlit-test
           echo "Waiting for Streamlit to boot..."
@@ -34,6 +34,7 @@ jobs:
         run: docker rm -f test-container
         
   deploy:
+    name: Streamlit Docker Deploy
     runs-on: ubuntu-latest
     needs: test
     steps:
