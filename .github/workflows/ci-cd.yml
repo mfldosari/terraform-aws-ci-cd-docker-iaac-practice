@@ -17,11 +17,19 @@ jobs:
       - name: Build Docker image
         run: docker build -t chatbot-streamlit-test .
 
-      - name: Run container and check if Streamlit boots
+      - name: 🚀 Run container and check if Streamlit boots
         run: |
-          docker run -d --name test-container -p 8501:8501 chatbot-streamlit-test
-          sleep 15  # Give it time to start
-          docker logs test-container | grep "Running on" || (echo "Streamlit failed to start!" && exit 1)
+          docker run -d -p 8501:8501 chatbot-streamlit-test
+          sleep 15  # Give Streamlit time to start
+        
+          CONTAINER_ID=$(docker ps --filter ancestor=chatbot-streamlit-test --format "{{.ID}}")
+          echo "🧪 Container ID: $CONTAINER_ID"
+
+          echo "🔍 Dumping logs..."
+          
+          docker logs $CONTAINER_ID
+      
+          docker logs $CONTAINER_ID | grep "Running on" || (echo "❌ Streamlit failed to start!" && exit 1)
 
       - name: Clean up
         run: docker rm -f test-container
