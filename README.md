@@ -28,4 +28,4 @@ This project demonstrates how to deploy a **Streamlit-based chatbot** on an **AW
 ---
 
 ## 🚀 Deployment Architecture
-![Preview](images/.png)
+![Preview](images/aws.png)
