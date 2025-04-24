@@ -1,9 +1,7 @@
 name: Deploy and Restart Chatbot Service
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   test:
